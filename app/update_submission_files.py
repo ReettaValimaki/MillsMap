@@ -171,7 +171,7 @@ def fetch_odk_submissions(form_index, base_url: str, aut: object, projectId: str
         # select only the wanted columns
         # WARNING columns is a dict imported from
         # config.py via star import!!! Dont do this
-        wanted_columns = columns[table]
+        wanted_columns = [s.replace('-' , '_') for s in columns[table].split(',')]
         form_data = [{key: row[key] for key in wanted_columns} for row in flatsubs]
         flatsubs = form_data
         # if the id column is not __id then change the id column to the right column

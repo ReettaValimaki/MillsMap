@@ -305,15 +305,15 @@ function drawMarkers(data) {
 //         .width(250)
 
 // //     Select menus
-//     var mill_owner2 = cross_data.dimension(function(d) { return d.interviewee_mill_owner; });
-//     var selectOwner = new dc.SelectMenu('#selectOwner',groupname);
-//     selectOwner
-//         .dimension(mill_owner2)
-//         .group(mill_owner2.group())
-//         .controlsUseVisibility(true);
-//     selectOwner.title(function (subs){
-//         return subs.key;
-//     })
+     var region = cross_data.dimension(function(d) { return d.school_details_Location_addr_region; });
+     var selectRegion = new dc.SelectMenu('#selectRegion',groupname);
+     selectRegion
+         .dimension(region)
+         .group(region.group())
+         .controlsUseVisibility(true);
+     selectRegion.title(function (subs){
+         return subs.key;
+     })
 //     var Location_addr_region2 = cross_data.dimension(function(d) { return d.Location_addr_region; });
 //     var selectRegion = new dc.SelectMenu('#selectRegion',groupname);
 //     selectRegion
