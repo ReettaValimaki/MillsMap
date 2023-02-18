@@ -305,106 +305,41 @@ function drawMarkers(data) {
 //         .width(250)
 
 // //     Select menus
-     var region = cross_data.dimension(function(d) { return d.school_details_Location_addr_region; });
-     var selectRegion = new dc.SelectMenu('#selectRegion',groupname);
-     selectRegion
-         .dimension(region)
-         .group(region.group())
-         .controlsUseVisibility(true);
-     selectRegion.title(function (subs){
-         return subs.key;
-     })
-//     var Location_addr_region2 = cross_data.dimension(function(d) { return d.Location_addr_region; });
-//     var selectRegion = new dc.SelectMenu('#selectRegion',groupname);
-//     selectRegion
-//         .dimension(Location_addr_region2)
-//         .group(Location_addr_region2.group())
-//         .controlsUseVisibility(true);
-//     selectRegion.title(function (subs){
-//         return subs.key;
-//     })
-//     var Location_addr_district2 = cross_data.dimension(function(d) { return d.Location_addr_district;});
-//     var selectDistrict = new dc.SelectMenu('#selectDistrict',groupname);
-//     selectDistrict
-//         .dimension(Location_addr_district2)
-//         .group(Location_addr_district2.group())
-//         .controlsUseVisibility(true);
-//     selectDistrict.title(function (subs){
-//         return subs.key;
-//     })
-//     var commodity_milled2 = cross_data.dimension(function(d) { return d.commodity_milled;}, true);
-//     var selectGrain = new dc.SelectMenu('#selectGrain',groupname);
-//     selectGrain
-//         .dimension(commodity_milled2)
-//         .group(commodity_milled2.group())
-//         .controlsUseVisibility(true);
-//     selectGrain.title(function (subs){
-//         return subs.key;
-//     })
-//     var mill_type2 = cross_data.dimension(function(d) { return d.mill_type; });
-//     var selectMillType = new dc.SelectMenu('#selectMillType',groupname);
-//     selectMillType
-//         .dimension(mill_type2)
-//         .group(mill_type2.group())
-//         .controlsUseVisibility(true);
-//     selectMillType.title(function (subs){
-//         return subs.key;
-//     })
-//     var operational_mill2 = cross_data.dimension(function(d) { return d.operational_mill; });
-//     var selectOperational = new dc.SelectMenu('#selectOperational',groupname);
-//     selectOperational
-//         .dimension(operational_mill2)
-//         .group(operational_mill2.group())
-//         .controlsUseVisibility(true);
-//     selectOperational.title(function (subs){
-//         return subs.key;
-//     })
-//     var Packaging_flour_fortified2 = cross_data.dimension(function(d) { return d.Packaging_flour_fortified; });
-//     var selectFortify = new dc.SelectMenu('#selectFortify',groupname);
-//     selectFortify
-//         .dimension(Packaging_flour_fortified2)
-//         .group(Packaging_flour_fortified2.group())
-//         .controlsUseVisibility(true);
-//     selectFortify.title(function (subs){
-//         return subs.key;
-//     })
-//     var Packaging_flour_fortified_standard2 = cross_data.dimension(function(d) { return d.Packaging_flour_fortified_standard; });
-//     var selectFortifyStandard = new dc.SelectMenu('#selectFortifyStandard',groupname);
-//     selectFortifyStandard
-//         .dimension(Packaging_flour_fortified_standard2)
-//         .group(Packaging_flour_fortified_standard2.group())
-//         .controlsUseVisibility(true);
-//     selectFortifyStandard.title(function (subs){
-//         return subs.key;
-//     })
-//     var energy_source2 = cross_data.dimension(function(d) { return d.energy_source; }, true);
-//     var selectEnergySource = new dc.SelectMenu('#selectEnergySource',groupname);
-//     selectEnergySource
-//         .dimension(energy_source2)
-//         .group(energy_source2.group())
-//         .controlsUseVisibility(true);
-//     selectEnergySource.title(function (subs){
-//         return subs.key;
-//     })
-//     var non_operational2 = cross_data.dimension(function(d) { return d.non_operational;}, true);
-//     var selectNonOperationReason = new dc.SelectMenu('#selectNonOperationReason',groupname);
-//     selectNonOperationReason
-//         .dimension(non_operational2)
-//         .group(non_operational2.group())
-//         .controlsUseVisibility(true);
-//     selectNonOperationReason.title(function (subs){
-//         return subs.key;
-//     })
+    const filters = {
+    'school_details_Location_addr_region': ['selectRegion', 'Region'],
+    'school_details_Location_addr_district': ['selectDistrict', 'District'],
+    'Food_purchases_foodtype': ['selectFoodType', 'Food purchases type'],
+    'school_details_school_type': ['selectSchoolType', 'School type'],
+    'school_details_Status_school_ownership': ['selectSchoolOwnership', 'School ownership'],
+    'school_details_Status_school_accommodation': ['selectSchoolAccommodation', 'School Accommodation'],
+    'feeding_feeding_status': ['selectFeedingStatus', 'Feeding Status'],
+    'Food_purchases-feeding_program_planning': ['selectFeedingPlanning', 'Feeding Program Planning'],
+    }
+    for (let key in filters){
+        console.log('key is ', key);
+        const id = '#' + filters[key][0]
+        console.log(id)
+
+        var region = cross_data.dimension(function(d) { return d[key]; });
+        var selectRegion = new dc.SelectMenu(id, groupname);
+        selectRegion
+            .dimension(region)
+            .group(region.group())
+            .controlsUseVisibility(true);
+        selectRegion.title(function (subs){
+            return subs.key;
+        })
+    }
 
      dc.renderAll(groupname);
 
-// //  Reset the filters
-//     d3.select('#resetFilters')
-//        .on('click', function() {
-//        console.log('reseted filters')
-//          dc.filterAll(groupname);
-//          dc.redrawAll(groupname);
-//     });
+ //  Reset the filters
+     d3.select('#resetFilters')
+        .on('click', function() {
+        console.log('reseted filters')
+          dc.filterAll(groupname);
+          dc.redrawAll(groupname);
+     });
 
 // //    Download
 //     d3.select('#download')

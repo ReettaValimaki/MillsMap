@@ -6,6 +6,8 @@ const map = createMap()
 // Note that this happens concurrently, but we'll only use the
 // machines after the mills download is complete
 var subs
+
+cofigurations = $.get('/read_config')
 mills_promise = $.get('/read_submissions')
 
 mills_promise.then(function(data) {

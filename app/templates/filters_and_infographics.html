@@ -2,30 +2,10 @@
 <div class="col-2 mt-4 margin-left-4 hide side-column" id="selects">
     <div style="clear: both; margin: 30px; float: left">
     <h4>Filters</h4>
-    <strong class="select-title m-2">Region</strong>
-    <div class="select" id="selectRegion">
-    </div>
-    <strong class="select-title m-2">Grain milled</strong>
-    <div class="select" id="selectGrain">
-    </div>
-    <strong class="select-title m-2">Mill type</strong>
-    <div class="select" id="selectMillType">
-    </div>
-    <strong class="select-title m-2">Operational</strong>
-    <div class="select" id="selectOperational">
-    </div>
-    <strong class="select-title m-2">Fortified</strong>
-    <div class="select" id="selectFortify">
-    </div>
-    <strong class="select-title m-2">Fortifying standard</strong>
-    <div class="select" id="selectFortifyStandard">
-    </div>
-    <strong class="select-title m-2">Energy source</strong>
-    <div class="select" id="selectEnergySource">
-    </div>
-    <strong class="select-title m-2">Non-operational reason</strong>
-    <div class="select" id="selectNonOperationReason">
-    </div>
+        {% for key in filters %}
+        <strong class="select-title m-2">{{ filters[key][1] }}</strong>
+        <div class="select" id="{{ filters[key][0] }}"></div>
+        {% endfor %}
     <button class="btn bg-warning p-3 m-2" id="resetFilters">Reset filters</button>
     <h4>Download data</h4>
         <div id="download-type" style="clear: both; float: left">
@@ -55,7 +35,6 @@
     <div class="p-3">
         <h4  class="card-title text-center">Milled grain</h4>
         <div id="grainType" class="infographics"></div>
-        <small>*Each machine can have multiple grain types</small>
     </div>
 
  </div>
