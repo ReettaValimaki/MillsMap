@@ -89,6 +89,11 @@ function drawMarkers(data) {
         function(p, v) { // add
              p.coordinatesDescription_coodinates_coordinates = v.coordinatesDescription_coodinates_coordinates;
              p.Food_purchases_foodtype = v.Food_purchases_foodtype;
+             p.school_details_school_name = v.school_details_school_name;
+             p.school_details_Location_addr_region = v.school_details_Location_addr_region;
+             p.school_details_Location_addr_district = v.school_details_Location_addr_district;
+             p.school_details_Location_addr_ward_shehiya = v.school_details_Location_addr_ward_shehiya;
+
             // p.mill_type.push(v.mill_type);
             // p.image_fns.push(v.img_machines);
             // p.energy_source.push(v.energy_source);
@@ -143,20 +148,11 @@ function drawMarkers(data) {
         })
 
          .popup(function(kv) {
-             var tooltip = "<dt>Number of schools: " + kv.value.count + "</dt>" +
-             "<dt>The school food type: " + kv.value.Food_purchases_foodtype  + "</dt>"
-
-        //     "<dt>The mill is operational: " + kv.value.operational_mill  + "</dt>" +
-        //     "<dt>Types of machines: " + kv.value.mill_type  + "</dt>" +
-	    // "<dt>Energy sources of the machines: " + kv.value.energy_source  + "</dt>" +
-	    // "<dt>Region: " + kv.value.Location_addr_region + "</dt>" +
-        //     "<dt>District: " + kv.value.Location_addr_district + "</dt>" +
-        //     "<dt>Mill id: " + kv.key + "</dt>";
-        //     for(i in kv.value.image_fns){
-        //         var fn = kv.value.image_fns[i],
-        //         path = 'static/figures/' + fn
-        //         tooltip = tooltip.concat("<img class='popupImage' src = '" + path + "'>")
-        //     }
+             var tooltip =
+             "<dt>School name: " + kv.value.school_details_school_name  + "</dt>" +
+             "<dt>Region: " + kv.value.school_details_Location_addr_region  + "</dt>" +
+             "<dt>District: " + kv.value.school_details_Location_addr_district  + "</dt>" +
+             "<dt>Ward: " + kv.value.school_details_Location_addr_ward_shehiya  + "</dt>"
              return tooltip
          })
         .filterByArea(true)
