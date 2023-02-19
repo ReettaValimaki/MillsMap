@@ -240,14 +240,15 @@ function drawMarkers(data) {
 //         })
 //       })
 
-//     var operational_mill = cross_data.dimension(function(d) { return d.operational_mill; });
-//     var operational_millGroup = operational_mill.group().reduceCount();
-//     var operational_millPie = dc.pieChart("#functionalMills",groupname)
-//       .dimension(operational_mill)
-//       .group(operational_millGroup)
-//       operational_millPie
-//       .legend(dc.legend().highlightSelected(true))
-//         .width(450)
+     var operational_mill = cross_data.dimension(function(d) { return d.Food_purchases_foodtype; });
+     var operational_millGroup = operational_mill.group().reduceCount();
+     var operational_millPie = dc.pieChart("#functionalMills",groupname)
+       .dimension(operational_mill)
+       .group(operational_millGroup)
+       .slicesCap(12)
+       operational_millPie
+       .legend(dc.legend().highlightSelected(true))
+         .width(450)
 
 //     var mill_owner = cross_data.dimension(function(d) { return d.interviewee_mill_owner; });
 //     var mill_ownerGroup = mill_owner.group().reduceCount();
