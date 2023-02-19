@@ -71,10 +71,15 @@ const createLegend = (map) => {
 }
 
 function drawMarkers(data) {
+    var schoolIcon = L.icon({
+        iconUrl: 'static/static_figures/school-solid.svg',
+        iconSize:     [60, 50], // size of the icon
+    });
+
     // Now the promise chain that uses the mills and machines
     customMarker = L.Marker.extend({
         options: {
-            Id: 'Custom data!'
+            Id: 'Custom data!',
         }
     });
     var cross_data = crossfilter(data);
@@ -156,7 +161,13 @@ function drawMarkers(data) {
          })
         .filterByArea(true)
       .marker(function(kv) {
-            marker = new customMarker([kv.value.coordinatesDescription_coodinates_coordinates[1], kv.value.coordinatesDescription_coodinates_coordinates[0]], {Id: (kv.key).toString()});
+            marker = new customMarker([
+                kv.value.coordinatesDescription_coodinates_coordinates[1],
+                kv.value.coordinatesDescription_coodinates_coordinates[0]],
+                {
+                    Id: (kv.key).toString(),
+                    icon: schoolIcon,
+                });
             // marker.on('click', function(e) {
             //     console.log(kv);
             //     var details_container = document.getElementById('details_container')
